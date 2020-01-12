@@ -37,13 +37,27 @@ export default class Registration extends Component {
   }
 
   handleSubmit(event) {
-    const { email, password, password_confirmation } = this.state;
+    const { email, password, password_confirmation,userType,phone } = this.state;
     const {logclick}=this.props;
+    
     if(password===password_confirmation)
     {
       const {signclick}=this.props;
+      const user={
+        email,
+        password,
+        password_confirmation,
+        userType,
+        phone
+      }
       //api call to backend with state
-      logclick();
+      axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then(res => {
+       // console.log(res);
+        //console.log(res.data);
+        logclick();
+      })
+      
       
     }
     else

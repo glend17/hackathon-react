@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import App from "../ShopOwner/App";
 import Apps from "../User/Apps";
+import axios from 'axios';
 
 export default class Login extends Component{
   constructor(props){
@@ -21,7 +22,8 @@ export default class Login extends Component{
     this.state={
       email:"",
       password:"",
-      type:"none"
+      type:"none",
+      id:""
      
     }
     this.handleChange=this.handleChange.bind(this);
@@ -33,8 +35,21 @@ export default class Login extends Component{
   
  handleClick(e){
   e.preventDefault();
+  const user={
+    email:this.state.email,
+    password:this.state.password,
+  }
   //api call to authorize
-  this.setState({type:"us"});
+  axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then(res => {
+        const i=res.data.id;
+        const typ=res.data.type;
+        this.setState({
+          id:i,
+          type:typ
+        });
+      })
+  //this.setState({type:"us"});
   
   
  }
@@ -51,7 +66,7 @@ handleChange = input => e => {
     const {signclick}=this.props;
     const {logclick}=this.props;
     switch(this.state.type){
-      case "us":{
+      case "user":{
         return(
 
           <div>

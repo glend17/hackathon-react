@@ -28,10 +28,9 @@ export default class App extends Component {
       //api call
   }
 
- onEdit(first,last,em){
+ onEdit(first,last){
      this.setState({ firstname:first,
      lastname:last,
-     email:em,
     current_tab:"Home"});
 
  }
