@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import axios from 'axios';
 
 export default class Registration extends Component {
   constructor(props) {
@@ -37,10 +38,13 @@ export default class Registration extends Component {
 
   handleSubmit(event) {
     const { email, password, password_confirmation } = this.state;
+    const {logclick}=this.props;
     if(password===password_confirmation)
     {
-      console.log('yes');
-      //
+      const {signclick}=this.props;
+      //api call to backend with state
+      logclick();
+      
     }
     else
     {
@@ -98,6 +102,20 @@ export default class Registration extends Component {
              floatingLabelText="Confirm Password"
              onChange = {(event,newValue) => this.setState({password_confirmation:newValue})}
              />
+             <br/>
+
+             <TextField
+               variant="outlined"
+               margin="normal"
+               required
+               
+        
+             hintText="Shop Owner/User"
+             floatingLabelText="Shop Owner/User?"
+             onChange = {(event,newValue) => this.setState({userType:newValue})}
+             />
+           <br/> 
+            
              
            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleSubmit(event)}/>
           </div>

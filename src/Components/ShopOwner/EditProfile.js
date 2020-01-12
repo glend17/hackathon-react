@@ -14,7 +14,7 @@ export class EditProfile extends Component {
     this.state={
       firstname:"",
       lastname:"",
-      email:"",
+      phone:"",
       password:""
 
     }
@@ -25,7 +25,18 @@ export class EditProfile extends Component {
  onClickHandle(){
    //api to edit dat in backend
    const {onEdit}=this.props;
-   const{firstname,lastname,email}=this.state;
+   const{firstname,lastname,phone}=this.state;
+   const user={
+     firstname,
+     lastname,
+     phone
+
+   }
+   axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then(res => {
+        });
+      })
+   
    onEdit(firstname,lastname,email);
 
    
@@ -41,7 +52,7 @@ export class EditProfile extends Component {
     return (
       <MuiThemeProvider >
         <React.Fragment>
-        <Grid
+       < Grid
           container
           spacing={0}
           direction="column"
@@ -71,9 +82,9 @@ export class EditProfile extends Component {
             />
             <br />
             <TextField
-              placeholder="Enter Your Email"
+              placeholder="Enter Your Phone Number"
               label="Email"
-              onChange={(e)=>this.handleChange(e,'email')}
+              onChange={(e)=>this.handleChange(e,'phone')}
               defaultValue={values.email}
               margin="normal"
 							fullWidth="false"

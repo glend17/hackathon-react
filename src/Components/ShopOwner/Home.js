@@ -57,21 +57,30 @@ export default class Home extends Component{
         switch(this.state.renderotulet){
             case true:{
                 return(
-                   <div>
                     <div>
+                        <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center">
+>
+
+
+                   <div>
                          <Grid container spacing={2}>
                             {stores.map(this.outletUi)}
                          </Grid>
                     </div>
-                    <div>
-                        hello
+                      <div> 
                     <Button
                     color="primary"
                     variant="contained"
                     onClick={this.Addoutlet}
                   >Add Outlet</Button>
                   </div>
+                  </Grid>
                   </div>
+                  
                   
                 );
                  }

@@ -48,8 +48,7 @@ const styles = theme => ({
 });
 //const classes = styles();
 class Sidebar extends Component {
-  constructor(props)
-  {
+  constructor(props){
     super(props);
   this.state = {
     mobileOpen: false,

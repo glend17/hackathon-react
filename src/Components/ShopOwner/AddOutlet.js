@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Grid } from '@material-ui/core';
+
 
 export default class Registration extends Component {
   constructor(props) {
@@ -36,10 +38,21 @@ export default class Registration extends Component {
   }
 
   handleSubmit(event) {
-    const { storeName, outletType, address,gmap,picture } = this.state;
+    const { storeName, outletType, address } = this.state;
     //api to send store
+    const user={
+      storeName,
+      outletType,
+      address,
 
-    this.props.AddedOutlet();
+    }
+    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then(res => {
+
+        this.props.AddedOutlet();
+      })
+
+    
     
     event.preventDefault();
   }
@@ -51,6 +64,11 @@ export default class Registration extends Component {
       <div>
         <MuiThemeProvider>
           <div className={style.root}>
+          <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center">
           
            <div className="{styles.form}">
            <TextField
@@ -81,6 +99,7 @@ export default class Registration extends Component {
              
            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleSubmit(event)}/>
           </div>
+          </Grid>
           </div>
          </MuiThemeProvider>
       </div>

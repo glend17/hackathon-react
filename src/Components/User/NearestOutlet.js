@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 //import { renderComponent } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Grid } from '@material-ui/core';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class NearestOutlet extends Component{
     constructor(props){
@@ -12,7 +14,7 @@ export default class NearestOutlet extends Component{
         stores:[]
        
       };
-
+      this.handleSubmit=this.handleSubmit.bind(this);
       
     }
 
@@ -25,8 +27,16 @@ export default class NearestOutlet extends Component{
 
       return(
         <div>
-           <RaisedButton label="Search" primary={true} onClick={(event) => this.handleSubmit(event)}/>
-          
+           <MuiThemeProvider >
+          <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center">
+           <RaisedButton label="Search"  onClick={(event) => this.handleSubmit(event)}/>
+           
+          </Grid>
+          </MuiThemeProvider >
         </div>
       )
 
@@ -39,3 +49,14 @@ export default class NearestOutlet extends Component{
       
      
     }
+    const style = {
+      root: {
+        height: '100vh',
+      },
+      margin: 15,
+      form: {
+        width: '100%', 
+        
+      }
+    
+    };
